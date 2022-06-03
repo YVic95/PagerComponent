@@ -30,11 +30,11 @@
             if($currentPage > $this->pager->getVisibleLinkCount() + 1) {
                 $init = $currentPage - $this->pager->getVisibleLinkCount();
                 for($i = $init; $i < $currentPage; $i++) {
-                    $returnPage .= $this->link($i, $i) . "";
+                    $returnPage .= $this->link($i, $i) . " ";
                 } 
             } else {
                 for($i = 1; $i < $currentPage; $i++) {
-                    $returnPage .= $this->link($i, $i) . "";
+                    $returnPage .= $this->link($i, $i) . " ";
                 }
             }
             //Display current element
@@ -43,11 +43,11 @@
             if($currentPage + $this->pager->getVisibleLinkCount() < $totalPages) {
                 $cond = $currentPage + $this->pager->getVisibleLinkCount();
                 for($i = $currentPage + 1; $i < $cond; $i++) {
-                    $returnPage .= $this->link($i, $i) . "";
+                    $returnPage .= $this->link($i, $i) . " ";
                 }
             } else {
                 for($i = $currentPage + 1; $i <= $totalPages; $i++) {
-                    $returnPage .= $this->link($i, $i) . "";
+                    $returnPage .= $this->link($i, $i) . " ";
                 }
             }
             //Display link "Next" if its not the last page
