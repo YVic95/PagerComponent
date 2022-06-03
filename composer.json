@@ -1,0 +1,22 @@
+{
+    "name": "yvic95/pageNavigation",
+    "description": "A library to split results into multiple pages",
+    "keywords": ["pager", "pagination", "paginator", "navigation"],
+    "homepage": "",
+    "license": "MIT",
+    "author": {
+        "name": "Victoria Yevlentieva",
+        "email": "vika.yevlentieva@gmail.com"
+    },
+    "support": {
+        "email": "vika.yevlentieva@gmail.com"
+    },
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "YVPager\\":"src/"
+        }
+    }
+}
