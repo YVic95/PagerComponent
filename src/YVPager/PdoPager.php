@@ -4,7 +4,7 @@
     /**
      * This class implements per page navigation for DB tables
      */
-    class PdoPager extends PdoPager
+    class PdoPager extends Pager
     {
         protected $pdo;
         protected $tableName;
@@ -45,10 +45,32 @@
             //for a particular group in the table. 
             //Here is the basic syntax: SELECT COUNT(column_name) 
             //FROM table_name;
-            $query = "SELECT COUNT (*) AS total FROM {$this->tableName}
-                      {$this->where}";
+            $query = "SELECT COUNT(*) AS total FROM {$this->tableName}{$this->where}";
             $to = $this->pdo->prepare($query);
             $to->execute($this->params);
             return $to->fetch()['total'];
+        }
+        public function getItems() {
+            //Current page
+            $currentPage = $this->getCurrentPage();
+            //Total number of pages
+            $totalPages = $this->getPagesCount();
+            //Checking if the requested page is in the min-max range
+            if($currentPage <= 0 || $currentPage > $totalPages) {
+                return 0;
+            }
+            //Extracting the items of the current page
+            $arr = [];
+            //The item from which extraction of the file strings starts
+            $first = ($currentPage - 1) * $this->getItemsPerPage();
+            //Extracting elements for current page
+            $query = "SELECT * FROM {$this->tableName} {$this->where}
+                      {$this->order} LIMIT $first, {$this->getItemsPerPage()}";
+            $table = $this->pdo->prepare($query);
+            $table->execute($this->params);
+            
+            return $results = $table->fetchAll();
+            
+
         }
     }
