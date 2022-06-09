@@ -46,26 +46,29 @@
             //Checking if there are links on the right side
             if($currentPage + $this->pager->getVisibleLinkCount() > $totalPages) 
             {
+                echo "hi";
                 //If there are 
-                $condition = $currentPage + $this->pager->getVisibleLinkCount();
+                 $condition = $currentPage + $this->pager->getVisibleLinkCount();
                 // or $i <= $condition ???
-                for($i = $currentPage; $i < $condition; $i++) {
+                for($i = $currentPage; $i < $totalPages; $i++) {
                     if($currentPage == $i) {
                         $returnPage .= " " . $this->range(
                             (($i-1) * $this->pager->getItemsPerPage() + 1),
                             $i * $this->pager->getItemsPerPage()) . " ";
                     } else {
                         $range = $this->range(
-                            (($i-1) * $this->pager->getItemsPerPage() + 1),
+                            (($totalPages-1) * $this->pager->getItemsPerPage() + 1),
                             $i * $this->pager->getItemsPerPage());
+                            
                         $returnPage .= " " . $this->link($range, $i) . " ";
                     }
                 }
                 $range = $this->range(
                     (($totalPages - 1) * $this->pager->getItemsPerPage() + 1),
                     $this->pager->getItemsCount());
-                $returnPage .= " ... " .$this->link($range, $totalPages) . " ";
+                $returnPage .= " " .$this->link($range, $totalPages) . " ";
             } else {
+                echo "hi2!";
                 //If there are no link on the right side
                 for($i = $currentPage; $i <= $totalPages; $i++) {
                     if($totalPages == $i) {
